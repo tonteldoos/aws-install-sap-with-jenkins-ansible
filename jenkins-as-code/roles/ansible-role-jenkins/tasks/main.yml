@@ -3,6 +3,17 @@
 # Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 # SPDX-License-Identifier: MIT-0
 
+# Set ansible_os_family variable
+- name: Set ansible_os_family variable
+  set_fact:
+    ansible_os_family: "{{ ansible_facts['distribution'] }}"
+  when: ansible_facts['distribution'] is defined
+
+# Debug task to output ansible_os_family value
+- name: Debug ansible_os_family value
+  debug:
+    msg: "ansible_os_family: {{ ansible_os_family }}"
+
 # Variable setup.
 - name: Include OS-Specific variables
   include_vars: "{{ ansible_os_family }}.yml"

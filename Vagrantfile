@@ -2,7 +2,7 @@
 # vi set ft=ruby :
 
 Vagrant.configure(2) do |config|
-
+    config.vm.box_download_insecure = true
     config.vm.provider "virtualbox"
     config.vm.provider "virtualbox" do |v|
         v.memory = 3072
